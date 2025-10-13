@@ -162,7 +162,7 @@ a i:hover {
 .welcome {
   background-color: #1AA3B9;
   position: relative;
-  background-image: url(../Recursos/IMG-WEL.jpg);
+  background-image: url(IMG-WEL.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   height: 80vh;
@@ -696,3 +696,4 @@ body {
   border-bottom: 3px solid #e63946;
   font-weight: 700;
 }
+
