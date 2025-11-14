@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones</title>
+     <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/calificacion-estudiante.css">
+</head>
+<body>
+
+   <div id="sidebar-container"></div>
+
+<script>
+  // Cargar sidebar en el contenedor
+  fetch("sidebar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("sidebar-container").innerHTML = data;
+
+      // ✅ Esperar a que el sidebar esté en el DOM
+      initSidebar();
+    });
+
+  function initSidebar() {
+    const logo = document.getElementById("logo");
+    const barraLateral = document.querySelector(".barra-lateral");
+    const spans = document.querySelectorAll("span");
+    const palanca = document.querySelector(".switch");
+    const circulo = document.querySelector(".circulo");
+    const menu = document.querySelector(".menu");
+    const main = document.querySelector("main");
+
+    // Menú hamburguesa
+    menu.addEventListener("click", () => {
+      barraLateral.classList.toggle("max-barra-lateral");
+      const isMax = barraLateral.classList.contains("max-barra-lateral");
+      menu.children[0].style.display = isMax ? "none" : "block";
+      menu.children[1].style.display = isMax ? "block" : "none";
+
+      if (window.innerWidth <= 320) {
+        barraLateral.classList.add("mini-barra-lateral");
+        main.classList.add("min-main");
+        spans.forEach((span) => span.classList.add("oculto"));
+      }
+    });
+
+    // Dark mode
+    palanca.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      circulo.classList.toggle("prendido");
+    });
+
+    // Logo
+    logo.addEventListener("click", () => {
+      barraLateral.classList.toggle("mini-barra-lateral");
+      main.classList.toggle("min-main");
+      spans.forEach((span) => span.classList.toggle("oculto"));
+    });
+  }
+</script>
+
+    <main>
+  <section class="contenedor-calificaciones">
+    <h2>📊 Calificaciones</h2>
+    <div class="mensaje-info">
+      <p>
+        Las calificaciones del <strong>Primer Periodo (Septiembre - Diciembre)</strong> 
+        estarán disponibles a partir del <strong>20 de Diciembre</strong>.
+      </p>
+    </div>
+  </section>
+</main>
+
+
+     
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+
+    
+</body>
+</html>

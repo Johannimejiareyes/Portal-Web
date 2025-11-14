@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Horario</title>
+     <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/horario.css">
+</head>
+<body>
+
+    <div id="sidebar-container"></div>
+
+<script>
+  // Cargar sidebar en el contenedor
+  fetch("sidebar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("sidebar-container").innerHTML = data;
+
+   
+      initSidebar();
+    });
+
+  function initSidebar() {
+    const logo = document.getElementById("logo");
+    const barraLateral = document.querySelector(".barra-lateral");
+    const spans = document.querySelectorAll("span");
+    const palanca = document.querySelector(".switch");
+    const circulo = document.querySelector(".circulo");
+    const menu = document.querySelector(".menu");
+    const main = document.querySelector("main");
+
+   
+    menu.addEventListener("click", () => {
+      barraLateral.classList.toggle("max-barra-lateral");
+      const isMax = barraLateral.classList.contains("max-barra-lateral");
+      menu.children[0].style.display = isMax ? "none" : "block";
+      menu.children[1].style.display = isMax ? "block" : "none";
+
+      if (window.innerWidth <= 320) {
+        barraLateral.classList.add("mini-barra-lateral");
+        main.classList.add("min-main");
+        spans.forEach((span) => span.classList.add("oculto"));
+      }
+    });
+
+ 
+    palanca.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      circulo.classList.toggle("prendido");
+    });
+
+   
+    logo.addEventListener("click", () => {
+      barraLateral.classList.toggle("mini-barra-lateral");
+      main.classList.toggle("min-main");
+      spans.forEach((span) => span.classList.toggle("oculto"));
+    });
+  }
+</script>
+
+<main>
+  <section class="horario">
+    <h2>Horario de Clases - Primer Grado</h2>
+
+    <table class="tabla-horario">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miércoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>8:00 - 8:45</td>
+          <td class="matematica" data-label="Lunes">Matemática</td>
+          <td class="ingles" data-label="Martes">FIHR</td>
+          <td class="lengua" data-label="Miércoles">Lengua Española</td>
+          <td class="ciencias" data-label="Jueves">C. Naturaleza</td>
+          <td class="lengua" data-label="Viernes">Lengua Española</td>
+        </tr>
+        <tr>
+          <td>8:45 - 9:30</td>
+          <td class="lengua" data-label="Lunes">Lengua Española</td>
+          <td class="sociales" data-label="Martes">C. Sociales</td>
+          <td class="matematica" data-label="Miércoles">Matemática</td>
+          <td class="artes" data-label="Jueves">Educ. Artística</td>
+          <td class="ciencias" data-label="Viernes">C. Naturaleza</td>
+        </tr>
+        <tr>
+          <td>9:30 - 10:15</td>
+          <td class="ef" data-label="Lunes">Educ. Física</td>
+          <td class="matematica" data-label="Martes">Matemática</td>
+          <td class="sociales" data-label="Miércoles">C. Sociales</td>
+          <td class="lengua" data-label="Jueves">Lengua Española</td>
+          <td class="ingles" data-label="Viernes">FIHR</td>
+        </tr>
+        <tr>
+          <td>10:15 - 10:45</td>
+          <td colspan="5" class="recreo">RECREO</td>
+        </tr>
+        <tr>
+          <td>10:45 - 11:30</td>
+          <td class="ciencias" data-label="Lunes">C. Naturaleza</td>
+          <td class="ef" data-label="Martes">Educ. Física</td>
+          <td class="artes" data-label="Miércoles">Educ. Artística</td>
+          <td class="matematica" data-label="Jueves">Matemática</td>
+          <td class="sociales" data-label="Viernes">C. Sociales</td>
+        </tr>
+        <tr>
+          <td>11:30 - 12:00</td>
+          <td class="lengua" data-label="Lunes">Lengua Española</td>
+          <td class="ciencias" data-label="Martes">C. Naturaleza</td>
+          <td class="ingles" data-label="Miércoles">FIHR</td>
+          <td class="ef" data-label="Jueves">Educ. Física</td>
+          <td class="artes" data-label="Viernes">Educ. Artística</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="script.js"></script>
+    
+</body>
+</html>
