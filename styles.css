@@ -1,0 +1,305 @@
+:root {
+    --red: #E74543;
+    --blue: #41338E;
+    --muted: #6b7280;
+    --bg: #f7f8fb;
+    --card: #ffffff;
+    --radius: 12px;
+    --maxwidth: 1200px;
+    --shadow: 0 6px 18px rgba(65, 51, 142, 0.06);
+    --glass: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    font-size: 62.5%;
+    background-color: var(--bg);
+    background-color: white;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: var(--bg);
+    color: #111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: white;
+}
+
+.container {
+    max-width: var(--maxwidth);
+    margin: 28px auto;
+    padding: 18px
+}
+
+.con{
+   background-color: white;
+}  
+
+.navb{
+    margin-bottom: 3rem;
+}
+
+
+/*SECCION DE HERO*/
+
+.hero {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--bg);
+    border-bottom: px solid #000000;
+    background-color: white;
+  
+}
+
+.hero h1 {
+    font-size: 33px;
+    margin: 0 0 12px;
+    color: #41338E;
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 0;
+    color: #555;
+}
+
+
+/*CARD DE SELECCION*/
+
+.cards-section {
+    margin: 40px 0;
+    background-color: rgb(64, 94, 119);
+    padding: 2.5rem;
+    width: 100% !important; 
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.card-option {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 18px;
+    box-shadow: 0 6px 18px rgba(65, 51, 142, 0.08);
+    border: 1px solid #f0f0f5;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 23rem;
+}
+
+.card-option:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.card-option h3 {
+    margin: 17px 0 10px;
+    color: #41338E;
+    font-size: 2rem;
+
+}
+
+.card-option p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.card-icon {
+    font-size: 42px;
+    padding: 12px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-red {
+    color: #E74543;
+    background: rgba(231, 69, 67, 0.08);
+}
+
+.icon-blue {
+    color: #41338E;
+    background: rgba(65, 51, 142, 0.08);
+}
+
+/*REQUISITOS EN LINEA */
+
+.docs-section {
+    margin: 40px auto;
+    max-width: 1100px;
+    padding: 0 18px;
+   
+ 
+}
+
+.docs-section h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 8rem;
+}
+
+.docs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 5rem;
+}
+
+@media(max-width:900px) {
+    .docs-container {
+        grid-template-columns: 1fr
+    }
+}
+
+.docs-box h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #41338E;
+ 
+    font-weight: 700;
+}
+
+/* .docs-box h3{
+    color: #41338E;
+    text-align: center;
+    width: 100%;
+} */
+
+.docs-list {
+    list-style: none;
+    counter-reset: item;
+    padding-left: 0;
+}
+
+.docs-list li {
+    counter-increment: item;
+    margin-bottom: 12px;
+    font-size: 15px;
+    position: relative;
+    padding-left: 38px;
+}
+
+.docs-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #E74543;
+    /* círculo rojo */
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+
+/* Icons */
+.icon {
+    font-size: 34px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #f0f2f9
+}
+
+.icon-red {
+    color: var(--red);
+    border-color: rgba(231, 69, 67, 0.12)
+}
+
+.icon-blue {
+    color: var(--blue);
+    border-color: rgba(65, 51, 142, 0.12)
+}
+
+
+
+
+.small {
+    font-size: 13px
+}
+
+.note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: auto
+}
+
+/* SECCION DE PASOS */
+.card-full {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 12px;
+ 
+    margin-bottom: 18px
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px
+}
+
+@media (max-width:980px) {
+    .grid-3 {
+        grid-template-columns: 1fr
+    }
+}
+
+.step-card {
+    background: linear-gradient(180deg, #fff, #fbfbfd);
+    padding: 16px;
+    border-radius: 10px;
+    border: 2px solid #c2c2c2;
+    text-align: center
+}
+
+.guide h3 {
+    font-size: 2.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.step-card h4 {
+    font-size: 1.8rem;
+}
+
+.step-card p {
+    font-size: 1.6rem;
+}
+
+.icon-large {
+    font-size: 42px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    display: inline-block;
+    margin-bottom: 8px
+}
+
+ .card-full{
+    background-color: #ffffff;
+ }
