@@ -1,0 +1,300 @@
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+
+}
+
+* {
+  text-decoration: none;
+ 
+}
+
+
+/*ENCABEZADO*/
+.contacto{
+    width: 80%;
+    margin: auto;
+    padding-top: .7rem;
+    padding-bottom: 2rem;
+}
+
+ .contacto h1{
+    font-size: 4rem;
+    font-family: cursive;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.contacto p{
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+@media(max-width: 768px){
+     .contacto h1{
+        font-size: 3rem;
+     }
+
+     .contacto p{
+        font-size: 1.6rem;
+     }
+}
+
+
+
+.content-contacto{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contacto-left{
+    width: 40%;
+}
+
+.contacto-left img{
+    width: 100%;
+}
+
+@media(max-width: 768px){
+    .contacto-left{
+        display: none;
+    }
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    font-family:"Poppins",sans-serif;
+  
+}
+
+.contacto-derecha{
+    width: 43%;
+    background-color: rgb(223, 223, 223);
+    padding: 2rem;
+    height: auto;
+    border-radius: 1.5rem 1.5rem 0 0;
+    border: .3rem solid cadetblue;
+}
+
+@media(max-width: 768px){
+    .contacto-derecha{
+        width: 80%;
+    }
+}
+
+@media(max-width: 576px){
+    .contacto-derecha{
+        width: 90%;
+    }
+}
+
+
+
+input{
+    width: 85%;
+    font-size: 1.8rem;
+      height: 4.5rem;
+      outline: none;
+      border-radius: .5rem;
+      
+}
+
+input::placeholder{
+    font-size: 1.8rem;
+}
+
+
+form button{
+   width: 35%;
+   height: 3.5rem;
+  align-self: center;
+  border-radius: 1rem;
+  background-color: cadetblue;
+  color: white;
+  transition-duration: .3s ease;
+  cursor: pointer;
+  font-size: 1.6rem;
+  border: none;
+}
+
+
+form button:hover{
+    transform: scale(1.02) ;
+    box-shadow: 0 0 .5rem rgb(0, 0, 0);
+}
+
+ textarea{
+    width: 85%;
+    height: 10rem ;
+   outline: none;
+   border-radius: .5rem;
+   padding: 1rem;
+   font-size: 1.8rem;
+} 
+
+textarea::placeholder{
+    font-size: 1.8rem;
+}
+
+@media(max-width: 576px){
+    textarea::placeholder{
+    font-size: 1.6rem;
+}
+input::placeholder{
+    font-size: 1.6rem;
+}
+}
+
+
+ #nombre,
+  #correo,
+  #telefono,
+  #asunto,
+  #mensaje {
+    font-size: 1.8rem; }
+
+     @media(max-width: 576px){
+   #nombre,
+  #correo,
+  #telefono,
+  #asunto,
+  #mensaje {
+    font-size: 1.6rem; }
+
+}
+
+
+    /*BOTONES 
+    ==============*/
+  .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+
+  .social-buttons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 40px;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .social-buttons h2{
+    color: black;
+  }
+
+   @media(max-width: 576px){
+  .social-buttons h2{
+    font-size: 1.8rem;
+  }
+
+}
+
+ 
+  #btn-instagram {
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+  }
+
+
+  #btn-whatsapp {
+    background: #25D366;
+  }
+
+
+  .social-buttons a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  }
+
+  
+  .social-buttons i {
+    font-size: 1.8rem;
+    color: white;
+  }
+
+  /*MAPA Y REDES */
+ .Vistanos{
+     background-color: #F7F7F7;
+ }
+
+ 
+ .Vistanos h1{
+    font-size: 3.7rem;
+    font-family: cursive;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+@media(max-width: 768px){
+    .Vistanos h1{
+        font-size: 2.8rem;
+    }
+}
+
+
+  .content-visitanos{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    gap: 5rem;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #F7F7F7;
+  }
+
+  @media(max-width: 576px){
+   .content-visitanos{
+     flex-direction: column-reverse;
+   }
+}
+
+
+
+  .mapa{
+    width: 45%;
+  }
+
+  @media(max-width: 576px){
+  .mapa{
+    width: 85%;
+  }
+
+}
+
+  .mapa-1{
+    width: 100%;
+    height: 20rem;
+    border: .1rem solid rgb(134, 134, 134);
+  }
+
+
+  
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
