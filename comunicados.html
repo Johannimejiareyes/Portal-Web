@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicados</title>
+     <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/comunicados.css">
+</head>
+<body>
+     <div id="sidebar-container"></div>
+
+<script>
+  // Cargar sidebar en el contenedor
+  fetch("sidebar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("sidebar-container").innerHTML = data;
+
+      // ✅ Esperar a que el sidebar esté en el DOM
+      initSidebar();
+    });
+
+  function initSidebar() {
+    const logo = document.getElementById("logo");
+    const barraLateral = document.querySelector(".barra-lateral");
+    const spans = document.querySelectorAll("span");
+    const palanca = document.querySelector(".switch");
+    const circulo = document.querySelector(".circulo");
+    const menu = document.querySelector(".menu");
+    const main = document.querySelector("main");
+
+    // Menú hamburguesa
+    menu.addEventListener("click", () => {
+      barraLateral.classList.toggle("max-barra-lateral");
+      const isMax = barraLateral.classList.contains("max-barra-lateral");
+      menu.children[0].style.display = isMax ? "none" : "block";
+      menu.children[1].style.display = isMax ? "block" : "none";
+
+      if (window.innerWidth <= 320) {
+        barraLateral.classList.add("mini-barra-lateral");
+        main.classList.add("min-main");
+        spans.forEach((span) => span.classList.add("oculto"));
+      }
+    });
+
+    // Dark mode
+    palanca.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      circulo.classList.toggle("prendido");
+    });
+
+    // Logo
+    logo.addEventListener("click", () => {
+      barraLateral.classList.toggle("mini-barra-lateral");
+      main.classList.toggle("min-main");
+      spans.forEach((span) => span.classList.toggle("oculto"));
+    });
+  }
+</script>
+
+<main>
+   <div id="comunicados" class="section" >
+  <h2>📢 Comunicados</h2>
+  <p class="intro">Información importante para los padres de familia.</p>
+
+  <div class="comunicados-grid">
+    <!-- Comunicado 1 -->
+    <div class="comunicado-card">
+      <h3>🎒 Recordatorio de Material Escolar</h3>
+      <p>Se recuerda a los padres que los estudiantes deben traer 
+      sus útiles completos todos los días (lápiz, borrador, crayones, 
+      cuaderno de tareas). Esto permite que los niños trabajen 
+      con mayor comodidad.</p>
+      <span class="fecha-comunicado">Publicado: 28 de Septiembre</span>
+    </div>
+
+    <!-- Comunicado 2 -->
+    <div class="comunicado-card">
+      <h3>👨‍👩‍👧 Reunión de Padres</h3>
+      <p>El próximo <b>viernes 6 de Octubre a las 5:00 pm</b> se llevará a cabo 
+      una reunión en el aula de primer grado para hablar sobre el 
+      progreso académico y hábitos de estudio de los niños.</p>
+      <span class="fecha-comunicado">Publicado: 30 de Septiembre</span>
+    </div>
+  </div>
+</div>
+
+
+</main>
+
+
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="script.js"></script>
+    
+</body>
+</html>

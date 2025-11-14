@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de Comunicados</title>
+     <!-- <link rel="stylesheet" href="CSS/asistencia-docentes.css"> -->
+       <link rel="stylesheet" href="CSS/docente-gestion.css">
+   <link rel="stylesheet" href="CSS/docente-comunicado.css">
+</head>
+<body>
+     
+    <main class="contenedor">
+   <header class="header">
+      <h1>📢 Creación de Comunicados </h1>
+      <a href="admin.html" class="btn-volver">⬅ Volver al Panel</a>
+    </header>
+
+
+    <section class="comunicados"  style="border-radius: 50px;" style="padding: 20px;" >
+    <p class="intro"  >Redacta y envía un comunicado para tus Docentes</p>
+
+    <form id="formComunicado" class="form-comunicado">
+      <label for="titulo">Título del Comunicado:</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Escribe un título..." required>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe el mensaje del comunicado..." required></textarea>
+
+      <button type="submit" class="btn-publicar">Publicar Comunicado</button>
+    </form>
+
+    <p id="mensajeConfirmacion" class="mensaje-confirmacion"></p>
+  </section>
+
+  <script>
+    const form = document.getElementById("formComunicado");
+    const mensajeConfirmacion = document.getElementById("mensajeConfirmacion");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Limpia los campos
+      form.reset();
+
+      // Mensaje de confirmación
+      mensajeConfirmacion.textContent = "✅ Comunicado publicado correctamente.";
+      
+      // Borra el mensaje después de 3s
+      setTimeout(() => {
+        mensajeConfirmacion.textContent = "";
+      }, 3000);
+    });
+  </script>
+
+    </main>
+    
+</body>
+</html>

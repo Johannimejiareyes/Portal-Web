@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preescolar Mis Pequeñines</title>
+  <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="CSS/formato.css">
+  <link rel="stylesheet" href="CSS/reserva.css">
+</head>
+  <div class="encabezado">
+    <div id="navbar"></div>
+
+  </div>
+
+<body>
+  
+
+ 
+
+
+  <section class="container-admision">
+
+    <div class="img-admin">
+      <img src="Recursos/IMG-ADMIN.jpg"  alt="">
+    </div>
+
+    
+
+    <div class="content-form">
+      <h2>Formulario de Preinscripción</h2>
+      <p>Completa el siguiente formulario y nos pondremos en contacto contigo para continuar con el proceso de admisión.
+      </p>
+
+      <form id="admissionForm" class="form">
+       
+        <div class="container-input">
+<input type="text" id="studentName" placeholder="Nombre del estudiante" name="studentName" required>
+
+        <select name="genero" id="genero">
+          <option value="">Genero </option>
+          <option value="niño">Niño</option>
+          <option value="niña">Niña</option>
+        </select>
+
+        <select name="edad" id="edad">
+          <option value="" class="option">Edad</option>
+          <option value="tres">3 años</option>
+          <option value="tres">4 años</option>
+          <option value="tres">5 años</option>
+          <option value="tres">6 años</option>
+          <option value="tres">7 años</option>
+          <option value="tres">8 años</option>
+          <option value="tres">9 años</option>
+          <option value="tres">10 años</option>
+        </select>
+
+        <select id="grade" name="grade" required>
+          <option value="">Grado a ingresar</option>
+          <option value="parvulos">Párvulos</option>
+          <option value="prekinder">Pre-Kinder</option>
+          <option value="kinder">Kinder</option>
+          <option value="pre1ro">Pre-primario</option>
+          <option value="1ro">Primero</option>
+        </select>
+        <input type="text" id="parentName" name="parentName" required placeholder="Nombre del padre/madre/tutor">
+
+        <input type="tel" id="phone" name="phone" required placeholder="Teléfono">
+        <input type="email" id="email" name="email" required placeholder="Correo electrónico">
+        <select id="contactMethod" name="contactMethod">
+          <option value="">Medio de contacto preferido</option>
+          <option value="telefono">Teléfono</option>
+          <option value="email">Correo electrónico</option>
+          <option value="whatsapp">WhatsApp</option>
+        </select>
+        </div>
+       
+         <div class="btn-container">
+          <!-- <a href="Recursos/Guia_Admisiones.pdf" download class="btn-descargar">
+            <p>Descargar Guía de Inscripción</p>
+          </a> -->
+          <button type="submit" class="btn-enviar">Enviar</button>
+        </div>
+       
+      </form>
+    </div>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

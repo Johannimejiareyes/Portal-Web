@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+      <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="CSS/estudiante.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Indie+Flower&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+ <div id="sidebar-container"></div>
+
+<script>
+  // Cargar sidebar en el contenedor
+  fetch("sidebar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("sidebar-container").innerHTML = data;
+
+      // ✅ Esperar a que el sidebar esté en el DOM
+      initSidebar();
+    });
+
+  function initSidebar() {
+    const logo = document.getElementById("logo");
+    const barraLateral = document.querySelector(".barra-lateral");
+    const spans = document.querySelectorAll("span");
+    const palanca = document.querySelector(".switch");
+    const circulo = document.querySelector(".circulo");
+    const menu = document.querySelector(".menu");
+    const main = document.querySelector("main");
+
+    // Menú hamburguesa
+    menu.addEventListener("click", () => {
+      barraLateral.classList.toggle("max-barra-lateral");
+      const isMax = barraLateral.classList.contains("max-barra-lateral");
+      menu.children[0].style.display = isMax ? "none" : "block";
+      menu.children[1].style.display = isMax ? "block" : "none";
+
+      if (window.innerWidth <= 320) {
+        barraLateral.classList.add("mini-barra-lateral");
+        main.classList.add("min-main");
+        spans.forEach((span) => span.classList.add("oculto"));
+      }
+    });
+
+    // Dark mode
+    palanca.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      circulo.classList.toggle("prendido");
+    });
+
+    // Logo
+    logo.addEventListener("click", () => {
+      barraLateral.classList.toggle("mini-barra-lateral");
+      main.classList.toggle("min-main");
+      spans.forEach((span) => span.classList.toggle("oculto"));
+    });
+  }
+</script>
+
+
+ <main>
+  <!-- Contenido -->
+  <div class="content">
+    
+    <!-- Encabezado de estudiante -->
+    <div class="student-header">
+      <h2>👋 ¡Bienvenido, Juan Pérez!</h2>
+      <p>Estudiante de 1ro de Primaria</p>
+    </div>
+
+    <!-- Novedades -->
+    <div class="section" id="inicio">
+      <h3 class="section-title">✨ Novedades</h3>
+      <div class="card-container">
+        <div class="card Nota">
+          <h3>📊 Última Nota</h3>
+          <p>Lengua Española: 95/100</p>
+        </div>
+        <div class="card Entrega">
+          <h3>📝 Próxima Entrega</h3>
+          <p>Matemática - 4 de Octubre</p>
+        </div>
+        <div class="card Nuevo">
+          <h3>📢 Comunicado Nuevo</h3>
+          <p>Reunión de padres - 17 de Octubre</p>
+        </div>
+      
+        <div class="card Asistencia">
+          <h3>✅ Asistencia</h3>
+          <p>Asistencia del mes: 95%</p>
+        </div>
+        <div class="card Pago">
+          <h3>💳 Recordatorio de Pago</h3>
+          <p>Mensualidad pendiente: Octubre</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Otras secciones -->
+    <div id="calificaciones" class="section" style="display:none;">
+      <h2>Calificaciones</h2>
+      <p>Aquí se mostrarán las calificaciones por materia.</p>
+    </div>
+
+    <div id="horario" class="section" style="display:none;">
+      <h2>Horario</h2>
+      <p>Tu horario semanal de clases estará aquí.</p>
+    </div>
+
+    <div id="comunicados" class="section" style="display:none;">
+      <h2>Comunicados</h2>
+      <p>Mensajes importantes de la escuela.</p>
+    </div>
+
+    <div id="faq" class="section" style="display:none;">
+      <h2>Preguntas Frecuentes</h2>
+      <p>Respuestas a dudas comunes.</p>
+    </div>
+
+    <div id="asignaciones" class="section" style="display:none;">
+      <h2>Asignaciones</h2>
+      <p>Tareas con fecha de entrega.</p>
+    </div>
+
+    <div id="materias" class="section" style="display:none;">
+      <h2>Mis Materias</h2>
+      <p>Listado de materias que cursas.</p>
+    </div>
+
+    <div id="cuenta" class="section" style="display:none;">
+      <h2>Estado de Cuenta</h2>
+      <p>Aquí verás los pagos y mensualidades.</p>
+    </div>
+  </div>
+</main>
+
+
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

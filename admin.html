@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador</title>
+    <link rel="stylesheet" href="CSS/admin.css">
+</head>
+
+<body>
+    <main class="dashboard">
+    
+        <header class="header">
+  <div class="logo-container">
+    <ion-icon id="logo" name="school-outline"></ion-icon>
+    <span class="azul">Preescolar  <span class="rojo">Mis Pequeñines</span></span>
+   
+  </div>
+  
+  <nav class="nav-header">
+    <a href="login.html" class="btn-salir">
+      <ion-icon name="log-out-outline"></ion-icon>
+      Salir
+    </a>
+  </nav>
+</header>
+
+
+ 
+        <section class="bienvenida">
+            <h2>Panel de Administración </h2>
+            <p>Desde aquí puedes gestionar alumnos, docentes, cursos y todos los procesos académicos de la institución.
+            </p>
+        </section>
+
+    
+        <section class="grid-opciones">
+        
+            <a href="estudiantes-gestion.html" class="card registro">
+                <div class="card-ico">📚</div>
+                <div class="card-title">Registrar / Editar Alumnos</div>
+                <div class="card-desc">Registro y gestión de estudiantes</div>
+            </a>
+
+          
+            <a href="docentes-gestion.html" class="card registro-docente">
+                <div class="card-ico">👩‍🏫</div>
+                <div class="card-title">Docentes</div>
+                <div class="card-desc">Registro y control de docentes</div>
+            </a>
+
+            <!-- CRUD Cursos -->
+           <a href="Comunicado-docentes.html" class="card Comunicado">
+                <div class="card-ico">📢</div>
+                <div class="card-title">Crear Comunicado</div>
+                <div class="card-desc">Creación de Comunicados para Docentes</div>
+            </a> 
+
+           
+
+
+            <a href="asistencia-gestion.html" class="card docente">
+                <div class="card-ico">👥</div>
+                <div class="card-title">Asistencia de Docentes</div>
+                <div class="card-desc">Registro y control de asistencia </div>
+            </a>
+
+         
+            <a href="pagos-gestion.html" class="card pago">
+                <div class="card-ico">💰</div>
+                <div class="card-title">Gestión de Pagos</div>
+                <div class="card-desc">Control de matrículas, mensualidades y otros pagos</div>
+            </a>
+        </section>
+    </main>
+
+ 
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignación</title>
+      <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+      <link rel="stylesheet" href="CSS/asignacion.css">
+</head>
+<body>
+
+    <div id="sidebar-container"></div>
+
+<script>
+  
+  fetch("sidebar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("sidebar-container").innerHTML = data;
+
+
+      initSidebar();
+    });
+
+  function initSidebar() {
+    const logo = document.getElementById("logo");
+    const barraLateral = document.querySelector(".barra-lateral");
+    const spans = document.querySelectorAll("span");
+    const palanca = document.querySelector(".switch");
+    const circulo = document.querySelector(".circulo");
+    const menu = document.querySelector(".menu");
+    const main = document.querySelector("main");
+
+    // Menú hamburguesa
+    menu.addEventListener("click", () => {
+      barraLateral.classList.toggle("max-barra-lateral");
+      const isMax = barraLateral.classList.contains("max-barra-lateral");
+      menu.children[0].style.display = isMax ? "none" : "block";
+      menu.children[1].style.display = isMax ? "block" : "none";
+
+      if (window.innerWidth <= 320) {
+        barraLateral.classList.add("mini-barra-lateral");
+        main.classList.add("min-main");
+        spans.forEach((span) => span.classList.add("oculto"));
+      }
+    });
+
+    // Dark mode
+    palanca.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      circulo.classList.toggle("prendido");
+    });
+
+    // Logo
+    logo.addEventListener("click", () => {
+      barraLateral.classList.toggle("mini-barra-lateral");
+      main.classList.toggle("min-main");
+      spans.forEach((span) => span.classList.toggle("oculto"));
+    });
+  }
+</script>
+
+<main>
+    <div id="asignaciones" class="section" >
+  <h2>📚 Asignaciones</h2>
+  <p class="intro">Estas son las tareas asignadas para los estudiantes de primer grado.</p>
+
+  <div class="task-list">
+    <div class="task-card">
+      <h3>📖 Lengua Española</h3>
+      <p>Leer en voz alta el cuento <b>"El patito feo"</b> con ayuda de los padres y responder 
+      las preguntas del cuaderno en la página 12.</p>
+      <span class="fecha-entrega">Entrega: 3 de Octubre</span>
+    </div>
+
+    <div class="task-card">
+      <h3>➕ Matemática</h3>
+      <p>Realizar las sumas de la página 18 del libro de matemáticas. 
+      Son 10 operaciones con números del 1 al 20. Con ayuda de los padres</p>
+      <span class="fecha-entrega">Entrega: 4 de Octubre</span>
+    </div>
+
+    <div class="task-card">
+      <h3>🌍 Ciencias Sociales</h3>
+      <p>Dibujar un mapa sencillo de la casa del estudiante, indicando 
+      con colores los lugares principales: cocina, sala, dormitorio y baño.</p>
+      <span class="fecha-entrega">Entrega: 5 de Octubre</span>
+    </div>
+
+    <div class="task-card">
+      <h3>🎨 Educación Artística</h3>
+      <p>Colorear y decorar un dibujo de la familia utilizando crayones o colores. 
+      El trabajo debe entregarse en la libreta de artística.</p>
+      <span class="fecha-entrega">Entrega: 6 de Octubre</span>
+    </div>
+  </div>
+</div>
+
+</main>
+
+
+ <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="script.js"></script>
+    
+</body>
+</html>

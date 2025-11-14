@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistencia Docentes</title>
+  <link rel="stylesheet" href="CSS/asistencia-docentes.css">
+</head>
+<body>
+  <main class="contenedor">
+    <!-- Header -->
+    <header class="header">
+      <h1>👩‍🏫 Asistencia de Docentes</h1>
+      <a href="admin.html" class="btn-volver">⬅ Volver al Panel</a>
+    </header>
+
+    <!-- Tabla de docentes -->
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Docente</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="docente-list"></tbody>
+      </table>
+    </section>
+
+    <!-- Botón registrar asistencia -->
+    <div class="acciones">
+      <button id="btn-registrar" class="btn-registrar">Registrar Asistencia</button>
+    </div>
+
+    <!-- Mensaje -->
+    <div id="mensaje" class="mensaje"></div>
+  </main>
+
+  <script>
+    // Lista inicial de docentes
+    const docentes = [
+      "María López", "Ana Torres", "Lucía Fernández",
+      "Sofía Ramírez", "Laura Gómez", "Carla Sánchez"
+    ];
+
+    const docenteList = document.getElementById("docente-list");
+    const btnRegistrar = document.getElementById("btn-registrar");
+    const mensaje = document.getElementById("mensaje");
+
+    // Renderizar la tabla de docentes
+    function renderDocentes() {
+      docenteList.innerHTML = "";
+      docentes.forEach((docente, i) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${i + 1}</td>
+          <td>${docente}</td>
+          <td class="acciones-botones">
+            <button class="btn btn-presente" data-docente="${i}" data-tipo="presente">Presente</button>
+            <button class="btn btn-ausente" data-docente="${i}" data-tipo="ausente">Ausente</button>
+            <button class="btn btn-tarde" data-docente="${i}" data-tipo="tarde">Tarde</button>
+          </td>
+        `;
+        docenteList.appendChild(tr);
+      });
+
+      // Evento de selección de asistencia
+      document.querySelectorAll(".btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const docenteId = btn.dataset.docente;
+          const grupo = document.querySelectorAll(`button[data-docente="${docenteId}"]`);
+          grupo.forEach(b => b.classList.remove("activo")); // limpiar selección
+          btn.classList.add("activo"); // marcar actual
+        });
+      });
+    }
+
+    // Mostrar mensaje al registrar asistencia y limpiar botones
+    btnRegistrar.addEventListener("click", () => {
+      mensaje.innerHTML = `
+        <div class="alerta">
+          ✅ Asistencia registrada
+          <span class="cerrar" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+      `;
+
+      // 🔹 Limpiar todos los botones (volver al estado inicial)
+      document.querySelectorAll(".btn").forEach(b => b.classList.remove("activo"));
+    });
+
+    renderDocentes();
+  </script>
+</body>
+</html>

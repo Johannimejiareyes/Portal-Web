@@ -1,0 +1,99 @@
+
+
+.horario {
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 90%;
+  margin: auto;
+ 
+}
+
+.horario h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.tabla-horario {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+thead th {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 12px;
+  font-size: 18px;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 17px;
+}
+
+/* Colores por materia */
+.matematica { background: #ff8a80; color: #000000; }
+.lengua { background: #81d4fa; color: #000000; }
+.sociales { background: #ffd54f; color: #000000; }
+.ciencias { background: #a5d6a7; color: #000000; }
+.artes { background: #ba68c8; color: #000000; }
+.ef { background: #4db6ac; color: #000000; }
+.ingles { background: #f48fb1; color: #000000; }
+
+.recreo {
+  background: #eeeeee;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+/* 🔹 Responsive: en pantallas pequeñas el horario se convierte en tarjetas */
+@media (max-width: 768px) {
+  .tabla-horario, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none; /* escondemos cabecera */
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  /* ❌ No mostrar label en la columna de horas */
+  td:first-child::before {
+    content: "";
+  }
+
+  /* ✅ Mostrar el día en las demás columnas */
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    margin-right: 10px;
+  }
+}
