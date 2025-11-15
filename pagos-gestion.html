@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Pagos</title>
+   <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="CSS/pagos-gestion.css">
+  <style>
+    .mensaje-exito {
+      display: none;
+      margin: 15px 0;
+      padding: 12px 40px 12px 12px;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 6px;
+      position: relative;
+    }
+    .btn-imprimir {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      margin-left: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-imprimir:hover {
+      background: #0056b3;
+    }
+    .btn-cerrar {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: #155724;
+      cursor: pointer;
+    }
+    .btn-cerrar:hover {
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <main class="contenedor">
+    <!-- Header -->
+    <header class="header">
+      <h1>💰 Gestión de Pagos</h1>
+      <a href="admin.html" class="btn-volver">⬅ Volver al Panel</a>
+    </header>
+
+    <!-- Mensaje de éxito -->
+    <div id="mensaje-exito" class="mensaje-exito"></div>
+
+    <!-- Formulario -->
+    <section class="formulario">
+      <h2 id="form-title">Registrar Pago</h2>
+      <form id="pago-form">
+        <input type="hidden" id="editIndex" value="">
+
+        <!-- Buscador estudiante -->
+        <div class="form-group">
+          <label for="estudiante">Buscar Estudiante</label>
+          <input type="text" id="buscarEstudiante" placeholder="Escribe nombre o apellido...">
+          <ul id="sugerencias" class="sugerencias"></ul>
+        </div>
+
+        <div class="form-group">
+          <label>Estudiante seleccionado</label>
+          <input type="text" id="estudiante" readonly required>
+        </div>
+
+        <div class="form-group">
+          <label>Concepto</label>
+          <select id="concepto" required>
+            <option value="">Seleccionar...</option>
+            <option value="Mensualidad">Mensualidad</option>
+            <option value="Matrícula">Matrícula</option>
+            <option value="Material">Material</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Monto</label>
+          <input type="number" id="monto" placeholder="Ej: 1500" required>
+        </div>
+
+        <div class="form-group">
+          <label>Método de Pago</label>
+          <select id="metodo" required>
+            <option value="">Seleccionar...</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" id="fecha" required>
+        </div>
+
+        <div class="form-group">
+          <label>Estado</label>
+          <select id="estado" required>
+            <option value="Pagado">Pagado</option>
+            <option value="Pendiente">Pendiente</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-guardar">💾 Guardar</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    /* ----------- Datos iniciales ----------- */
+    const estudiantes = [
+      "Ana Torres", "Luis García", "María López",
+      "Pedro Sánchez", "Lucía Fernández", "Carlos Gómez"
+    ];
+
+    let pagos = [
+      { estudiante: "Ana Torres", concepto: "Mensualidad", monto: 1500, metodo: "Efectivo", fecha: "2025-10-01", estado: "Pagado" },
+      { estudiante: "Luis García", concepto: "Matrícula", monto: 3000, metodo: "Tarjeta", fecha: "2025-09-15", estado: "Pendiente" }
+    ];
+
+    /* ----------- DOM ----------- */
+    const form = document.getElementById("pago-form");
+    const formTitle = document.getElementById("form-title");
+    const editIndex = document.getElementById("editIndex");
+    const buscarEstudiante = document.getElementById("buscarEstudiante");
+    const estudianteInput = document.getElementById("estudiante");
+    const sugerencias = document.getElementById("sugerencias");
+    const mensajeExito = document.getElementById("mensaje-exito");
+
+    /* ----------- Funciones ----------- */
+    function resetForm() {
+      form.reset();
+      estudianteInput.value = "";
+      editIndex.value = "";
+      formTitle.textContent = "Registrar Pago";
+    }
+
+    function mostrarMensaje(pago) {
+      mensajeExito.innerHTML = `
+        <button class="btn-cerrar" onclick="cerrarMensaje()">✖</button>
+        ✅ Pago registrado con éxito para <b>${pago.estudiante}</b> (${pago.concepto} - $${pago.monto}) 
+        <button class="btn-imprimir" onclick="imprimirRecibo(${pagos.length - 1})">🖨 Imprimir Recibo</button>
+      `;
+      mensajeExito.style.display = "block";
+    }
+
+    function cerrarMensaje() {
+      mensajeExito.style.display = "none";
+    }
+
+    function imprimirRecibo(index) {
+      const pago = pagos[index];
+      const recibo = `
+        <html>
+          <head>
+            <title>Recibo de Pago</title>
+          </head>
+          <body>
+            <h2>📄 Recibo de Pago</h2>
+            <p><b>Estudiante:</b> ${pago.estudiante}</p>
+            <p><b>Concepto:</b> ${pago.concepto}</p>
+            <p><b>Monto:</b> $${pago.monto}</p>
+            <p><b>Método:</b> ${pago.metodo}</p>
+            <p><b>Fecha:</b> ${pago.fecha}</p>
+            <p><b>Estado:</b> ${pago.estado}</p>
+            <hr>
+            <p>✔ Gracias por su pago.</p>
+          </body>
+        </html>
+      `;
+      const ventana = window.open("", "Recibo", "width=400,height=600");
+      ventana.document.write(recibo);
+      ventana.print();
+    }
+
+    /* ----------- CRUD ----------- */
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const estudiante = estudianteInput.value.trim();
+      const concepto = document.getElementById("concepto").value;
+      const monto = document.getElementById("monto").value;
+      const metodo = document.getElementById("metodo").value;
+      const fecha = document.getElementById("fecha").value;
+      const estado = document.getElementById("estado").value;
+
+      if (!estudiante || !concepto || !monto || !metodo || !fecha || !estado) {
+        alert("Completa todos los campos");
+        return;
+      }
+
+      const pago = { estudiante, concepto, monto, metodo, fecha, estado };
+
+      if (editIndex.value === "") {
+        pagos.push(pago);
+      } else {
+        pagos[editIndex.value] = pago;
+      }
+
+      resetForm();
+      mostrarMensaje(pago);
+    });
+
+    /* ----------- Buscador Estudiante ----------- */
+    buscarEstudiante.addEventListener("input", () => {
+      const texto = buscarEstudiante.value.toLowerCase();
+      sugerencias.innerHTML = "";
+      if (!texto) return;
+
+      const resultados = estudiantes.filter(e => e.toLowerCase().includes(texto));
+      resultados.forEach(nombre => {
+        const li = document.createElement("li");
+        li.textContent = nombre;
+        li.addEventListener("click", () => {
+          estudianteInput.value = nombre;
+          sugerencias.innerHTML = "";
+          buscarEstudiante.value = "";
+        });
+        sugerencias.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>

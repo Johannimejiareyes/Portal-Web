@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestión de Docentes</title>
+  <link rel="stylesheet" href="CSS/docente-gestion.css">
+</head>
+<body>
+  <main class="contenedor">
+    <!-- Header -->
+    <header class="header">
+      <h1>👩‍🏫 Gestión de Docentes</h1>
+      <a href="admin.html" class="btn-volver">⬅ Volver al Panel</a>
+    </header>
+
+    <!-- Formulario -->
+    <section class="formulario">
+      <h2 id="form-title">Registrar Docente</h2>
+      <form id="teacher-form">
+        <input type="hidden" id="editIndex" value="">
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" id="apellido" required>
+        </div>
+
+        <div class="form-group">
+          <label >Número de documento</label>
+           <input type="number" required>
+        </div>
+
+           <div class="form-group">
+          <label>Edad</label>
+          <input type="number" id="edad" min="18" max="70" required>
+        </div>
+
+           <div class="form-group">
+          <label>Correo Electrónico</label>
+          <input type="email" required>
+        </div>
+
+           <div class="form-group">
+          <label>Teléfono Celular</label>
+          <input type="number" required>
+        </div>
+
+           <div class="form-group">
+          <label>Título de Grado Universitario</label>
+          <input type="text" required placeholder="Ej: Licenciatura en...">
+        </div>
+
+        
+        <div class="form-group">
+          <label>Especialidad</label>
+          <input type="text" id="especialidad" required placeholder="Ej: Matemáticas, Lengua...">
+        </div>
+
+     
+
+        <button type="submit" class="btn-guardar">💾 Guardar</button>
+      </form>
+    </section>
+
+    <!-- Buscador -->
+    <section class="buscador">
+      <input type="text" id="buscar" placeholder="🔎 Buscar docente por nombre o apellido...">
+    </section>
+
+    <!-- Tabla -->
+    <section class="tabla">
+      <h2>Lista de Docentes</h2>
+      <p id="mensaje-vacio">No hay docentes visibles. Usa el buscador para mostrar registros o agrega uno nuevo.</p>
+
+      <table id="tabla-docentes" style="display:none;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="teacher-list"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    /* ---------- Datos iniciales (simulan BD JSON) ---------- */
+    let docentes = [
+      { nombre: "Ana", apellido: "Fernández", especialidad: "Matemáticas", edad: 35 },
+      { nombre: "Luis", apellido: "Torres", especialidad: "Lengua", edad: 42 },
+      { nombre: "Marta", apellido: "Ruiz", especialidad: "Lengua", edad: 39 },
+      { nombre: "Pedro", apellido: "Sánchez", especialidad: "Ciencias", edad: 45 }
+    ];
+
+    /* ---------- Referencias DOM ---------- */
+    const form = document.getElementById("teacher-form");
+    const teacherList = document.getElementById("teacher-list");
+    const formTitle = document.getElementById("form-title");
+    const editIndex = document.getElementById("editIndex");
+    const buscar = document.getElementById("buscar");
+    const tablaDocentes = document.getElementById("tabla-docentes");
+    const mensajeVacio = document.getElementById("mensaje-vacio");
+
+    /* ---------- Helpers ---------- */
+    function fullDisplayArray() {
+      return docentes.map((doc, idx) => ({ doc, idx }));
+    }
+
+    function renderTable(displayArray) {
+      teacherList.innerHTML = "";
+
+      if (!Array.isArray(displayArray) || displayArray.length === 0) {
+        tablaDocentes.style.display = "none";
+        const textoBusqueda = (buscar.value || "").trim();
+        mensajeVacio.textContent = textoBusqueda === ""
+          ? "No hay docentes visibles. Usa el buscador para mostrar registros o agrega uno nuevo."
+          : "No se encontraron resultados para tu búsqueda.";
+        mensajeVacio.style.display = "block";
+        return;
+      }
+
+      tablaDocentes.style.display = "table";
+      mensajeVacio.style.display = "none";
+
+      displayArray.forEach((item, posicion) => {
+        const { doc, idx } = item;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${posicion + 1}</td>
+          <td>${escapeHtml(doc.nombre)}</td>
+          <td>${escapeHtml(doc.apellido)}</td>
+          <td>${escapeHtml(doc.especialidad)}</td>
+          <td>${escapeHtml(doc.edad)}</td>
+          <td>
+         
+            <button class="btn-eliminar" data-idx="${idx}">🗑 Eliminar</button>
+          </td>
+        `;
+        teacherList.appendChild(tr);
+      });
+
+      teacherList.querySelectorAll(".btn-editar").forEach(b => {
+        b.addEventListener("click", e => editarDocIndex(Number(e.currentTarget.dataset.idx)));
+      });
+      teacherList.querySelectorAll(".btn-eliminar").forEach(b => {
+        b.addEventListener("click", e => eliminarDocIndex(Number(e.currentTarget.dataset.idx)));
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s || "").replace(/[&<>"']/g, c => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+      })[c]);
+    }
+
+    /* ---------- CRUD ---------- */
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const especialidad = document.getElementById("especialidad").value.trim();
+      const edad = Number(document.getElementById("edad").value);
+
+      if (!nombre || !apellido || !especialidad || !edad) {
+        alert("Completa todos los campos correctamente.");
+        return;
+      }
+
+      const teacher = { nombre, apellido, especialidad, edad };
+
+      if (editIndex.value === "") {
+        docentes.push(teacher);
+      } else {
+        const idx = Number(editIndex.value);
+        if (!Number.isNaN(idx) && docentes[idx]) {
+          docentes[idx] = teacher;
+        }
+        editIndex.value = "";
+        formTitle.textContent = "Registrar Docente";
+      }
+
+      form.reset();
+      renderTable(fullDisplayArray());
+    });
+
+    function editarDocIndex(index) {
+      const doc = docentes[index];
+      if (!doc) return alert("Registro no encontrado.");
+      document.getElementById("nombre").value = doc.nombre;
+      document.getElementById("apellido").value = doc.apellido;
+      document.getElementById("especialidad").value = doc.especialidad;
+      document.getElementById("edad").value = doc.edad;
+      editIndex.value = index;
+      formTitle.textContent = "Editar Docente";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function eliminarDocIndex(index) {
+      if (!docentes[index]) return alert("Registro no encontrado.");
+      if (!confirm("¿Seguro que deseas eliminar este docente?")) return;
+      docentes.splice(index, 1);
+      const texto = (buscar.value || "").trim().toLowerCase();
+      texto === "" ? renderTable(fullDisplayArray()) : doSearch(texto);
+    }
+
+    /* ---------- Búsqueda ---------- */
+    function doSearch(texto) {
+      const t = (texto || "").toLowerCase();
+      if (t === "") {
+        renderTable([]);
+        return;
+      }
+      const arr = docentes
+        .map((doc, idx) => ({ doc, idx }))
+        .filter(item => {
+          const nombre = (item.doc.nombre || "").toLowerCase();
+          const apellido = (item.doc.apellido || "").toLowerCase();
+          return nombre.includes(t) || apellido.includes(t);
+        });
+      renderTable(arr);
+    }
+
+    buscar.addEventListener("input", () => {
+      const texto = (buscar.value || "").trim();
+      doSearch(texto);
+    });
+
+    /* ---------- Inicio ---------- */
+    renderTable([]);
+  </script>
+</body>
+</html>

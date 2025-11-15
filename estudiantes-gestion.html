@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestión de Estudiantes</title>
+  <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="CSS/estudiante-gestion.css">
+ 
+</head>
+<body>
+  <main class="contenedor">
+    <header class="header">
+      <h1>📚 Gestión de Estudiantes</h1>
+      <a href="admin.html" class="btn-volver">⬅ Volver al Panel</a>
+    </header>
+
+    <!-- Formulario ampliado -->
+    <section class="formulario">
+      <h2 id="form-title">Registrar Estudiante</h2>
+      <form>
+      <div class="form-grid">
+
+        <!-- Columna izquierda -->
+        <div class="form-group">
+          <label>Apellidos y Nombres <span>* </span></label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Teléfono de contacto<span>* </span></label>
+          <input type="tel">
+        </div>
+
+        <div class="form-group">
+          <label>Correo del solicitante <span>* </span></label>
+          <input type="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Curso que solicita <span>* </span></label>
+          <select required>
+            <option value="">Seleccione</option>
+            <option>Parvulo</option>
+            <option>Pre Kinder</option>
+            <option>Kinder</option>
+            <option>Pre Primario</option>
+            <option>Primero</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Fecha de nacimiento <span>* </span></label>
+          <input type="date" required>
+        </div>
+
+        <div class="form-group">
+          <label>Lugar de Nacimiento <span>* </span></label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Edad <span>* </span></label>
+          <input type="number" min="1" required>
+        </div>
+
+        <div class="form-group">
+          <label>Sexo <span>* </span> </label>
+          <select required>
+            <option value="">Seleccione</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
+        </div>
+
+    
+        <div class="form-group full">
+          <label>Dirección <span>* </span></label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group full">
+          <label>Vive con <span>* </span></label>
+          <div class="options">
+            <label><input type="radio" name="vivecon" required> Ambos Padres</label>
+            <label><input type="radio" name="vivecon"> Madre</label>
+            <label><input type="radio" name="vivecon"> Padre</label>
+            <label><input type="radio" name="vivecon"> Tutor</label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>¿Hermano(s) solicitante(s)? <span>* </span></label>
+          <div class="options">
+            <label><input type="radio" name="hermano_solicita" required> Sí</label>
+            <label><input type="radio" name="hermano_solicita"> No</label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>¿Tiene hermano(s) en el colegio? <span>* </span></label>
+          <div class="options">
+            <label><input type="radio" name="hermano_colegio" required> Sí</label>
+            <label><input type="radio" name="hermano_colegio"> No</label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Colegio de Procedencia</label>
+          <input type="text">
+        </div>
+
+        <div class="form-group full file">
+          <label>Documentos (puede subir múltiples archivos)</label>
+          <input type="file" multiple>
+        </div>
+
+        <div class="form-group full">
+          <label>Razón por la cual desea ingresar al Colegio Preescolar Mis Pequeñines *</label>
+          <textarea required></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+           <button type="submit" class="btn-guardar">💾 Guardar</button>
+        <button type="reset" class="reset">Limpiar</button>
+      </div>
+    </form>
+     
+     
+    </section>
+
+    <!-- Buscador -->
+    <section class="buscador">
+      <input type="text" id="buscar" placeholder="🔎 Buscar estudiante por nombre o apellido...">
+    </section>
+
+    <!-- Tabla -->
+    <section class="tabla">
+      <h2>Lista de Estudiantes</h2>
+      <p id="mensaje-vacio">No hay estudiantes visibles. Usa el buscador para mostrar registros o agrega uno nuevo.</p>
+      <table id="tabla-estudiantes" style="display:none;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Grado</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="student-list"></tbody>
+      </table>
+    </section>
+  </main>
+
+<script>
+  // --- Datos iniciales (simulan base de datos) ---
+  let estudiantes = [
+    { nombre: "María", apellido: "Pérez", grado: "Kinder", edad: 5 },
+    { nombre: "Carlos", apellido: "Gómez", grado: "Primero", edad: 6 },
+    { nombre: "Lucía", apellido: "Ramírez", grado: "Primero", edad: 7 },
+    { nombre: "Andrés", apellido: "Martínez", grado: "Primero", edad: 8 },
+    { nombre: "Sofía", apellido: "López", grado: "Primero", edad: 6 }
+  ];
+
+  // --- Referencias DOM ---
+  const form = document.querySelector("form");
+  const studentList = document.getElementById("student-list");
+  const tablaEstudiantes = document.getElementById("tabla-estudiantes");
+  const mensajeVacio = document.getElementById("mensaje-vacio");
+  const buscar = document.getElementById("buscar");
+  const formTitle = document.getElementById("form-title");
+
+  // Campo oculto para edición
+  let editIndex = null;
+
+  // --- Renderizar tabla ---
+  function renderTable(array) {
+    studentList.innerHTML = "";
+
+    if (!array.length) {
+      tablaEstudiantes.style.display = "none";
+      mensajeVacio.style.display = "block";
+      return;
+    }
+
+    tablaEstudiantes.style.display = "table";
+    mensajeVacio.style.display = "none";
+
+    array.forEach((est, index) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${escapeHtml(est.nombre)}</td>
+        <td>${escapeHtml(est.apellido)}</td>
+        <td>${escapeHtml(est.grado)}</td>
+        <td>${escapeHtml(est.edad)}</td>
+        <td>
+        
+          <button class="btn-eliminar" data-index="${index}">🗑 Eliminar</button>
+        </td>
+      `;
+      studentList.appendChild(tr);
+    });
+
+    // Botones
+    document.querySelectorAll(".btn-editar").forEach(b => {
+      b.addEventListener("click", e => {
+        const idx = e.currentTarget.dataset.index;
+        editarEstudiante(idx);
+      });
+    });
+
+    document.querySelectorAll(".btn-eliminar").forEach(b => {
+      b.addEventListener("click", e => {
+        const idx = e.currentTarget.dataset.index;
+        eliminarEstudiante(idx);
+      });
+    });
+  }
+
+  // --- Escapar texto ---
+  function escapeHtml(text) {
+    return String(text || "").replace(/[&<>"']/g, c => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]
+    ));
+  }
+
+  // --- Obtener datos del formulario ---
+  function getFormData() {
+    const nombreCompleto = form.querySelector('input[type="text"]').value.trim();
+    const grado = form.querySelectorAll("select")[0].value;
+    const edad = form.querySelector('input[type="number"]').value;
+
+    // Separar nombre y apellido
+    let nombre = "", apellido = "";
+    if (nombreCompleto.includes(" ")) {
+      const partes = nombreCompleto.split(" ");
+      apellido = partes[0];
+      nombre = partes.slice(1).join(" ");
+    } else {
+      nombre = nombreCompleto;
+      apellido = "";
+    }
+
+    return { nombre, apellido, grado, edad: Number(edad) };
+  }
+
+  // --- Rellenar formulario al editar ---
+  function setFormData(est) {
+    const nombreInput = form.querySelector('input[type="text"]');
+    const gradoSelect = form.querySelectorAll("select")[0];
+    const edadInput = form.querySelector('input[type="number"]');
+
+    nombreInput.value = `${est.apellido} ${est.nombre}`.trim();
+    gradoSelect.value = est.grado;
+    edadInput.value = est.edad;
+  }
+
+  // --- Guardar/Editar estudiante ---
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const data = getFormData();
+    if (!data.nombre || !data.grado || !data.edad) {
+      alert("Completa los campos requeridos.");
+      return;
+    }
+
+    if (editIndex === null) {
+      estudiantes.push(data);
+    } else {
+      estudiantes[editIndex] = data;
+      editIndex = null;
+      formTitle.textContent = "Registrar Estudiante";
+    }
+
+    form.reset();
+    ocultarTabla(); // se oculta la tabla después de guardar
+  });
+
+  // --- Editar ---
+  function editarEstudiante(index) {
+    const est = estudiantes[index];
+    if (!est) return;
+    setFormData(est);
+    editIndex = index;
+    formTitle.textContent = "Editar Estudiante";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // --- Eliminar ---
+  function eliminarEstudiante(index) {
+    if (!confirm("¿Deseas eliminar este registro?")) return;
+    estudiantes.splice(index, 1);
+    doSearch(buscar.value.trim());
+  }
+
+  // --- Buscar ---
+  buscar.addEventListener("input", () => {
+    const texto = buscar.value.toLowerCase().trim();
+    doSearch(texto);
+  });
+
+  function doSearch(texto) {
+    if (!texto) {
+      ocultarTabla();
+      return;
+    }
+
+    const filtrados = estudiantes.filter(e =>
+      e.nombre.toLowerCase().includes(texto) ||
+      e.apellido.toLowerCase().includes(texto)
+    );
+
+    if (filtrados.length > 0) {
+      renderTable(filtrados);
+    } else {
+      studentList.innerHTML = "";
+      tablaEstudiantes.style.display = "none";
+      mensajeVacio.textContent = "No se encontraron resultados para tu búsqueda.";
+      mensajeVacio.style.display = "block";
+    }
+  }
+
+  // --- Ocultar tabla y mensaje por defecto ---
+  function ocultarTabla() {
+    tablaEstudiantes.style.display = "none";
+    mensajeVacio.style.display = "none";
+  }
+
+  // --- Inicializar ---
+  ocultarTabla();
+</script>
+
+  
+</body>
+</html>
