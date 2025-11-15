@@ -61,6 +61,13 @@ input, select, textarea {
   font-size: 1.6rem !important;
 }
 
+
+@media (max-width: 768px) {
+  input, select, textarea {
+  width: 97%;
+}
+}
+
 textarea {
   min-height: 80px;
   resize: vertical;
@@ -116,4 +123,5 @@ button.reset {
     font-size: 1.8rem;
     color: red;
 }
+
 
