@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif
+}
+
+body {
+    background: #F8F8F8;
+    color: #333
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    color: #fff;
+    padding: .8rem 2rem;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 2px 6px rgb(0 0 0 / .05);
+    height: 75px
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50
+}
+
+.logo-container ion-icon {
+    font-size: 1.6rem;
+    color: #e74c3c
+}
+
+.logo-text {
+    letter-spacing: .5px;
+    color: #fff
+}
+
+.azul {
+    color: #41338E;
+    font-family: "Luckiest Guy", cursive !important;
+    font-size: 25px
+}
+
+.rojo {
+    color: #E74543;
+    font-family: "Luckiest Guy", cursive !important;
+    font-size: 25px
+}
+
+.nav-header a {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    background: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease
+}
+
+.nav-header a:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgb(231 76 60 / .3)
+}
+
+.nav-header ion-icon {
+    font-size: 1.2rem
+}
+
+#logo {
+    font-size: 3rem;
+    color: #000
+}
+
+.header {
+    background: linear-gradient(90deg, #F8F9FA, #F8F9FA);
+    color: #fff;
+    padding: .8rem 2rem;
+    box-shadow: 0 2px 6px rgb(0 0 0 / .15)
+}
+
+@media (max-width: 576px) {
+  .header {
+    flex-direction: column; /* coloca logo y botón en columna */
+    align-items: flex-start;
+    height: auto;
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+
+  .logo-container {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo-container ion-icon {
+    font-size: 2.4rem;
+  }
+
+  .azul,
+  .rojo {
+    font-size: 1.4rem; /* texto más pequeño */
+  }
+
+  .nav-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-header a {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  #logo {
+    font-size: 2.2rem;
+  }
+}
+
+
+.bienvenida {
+    padding: 2rem;
+    text-align: center
+}
+
+.bienvenida h2 {
+    font-size: 1.8rem;
+    color: #000
+}
+
+.bienvenida p {
+    margin-top: .5rem;
+    color: #555
+}
+
+.grid-opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 12px rgb(0 0 0 / .1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgb(0 0 0 / .15)
+}
+
+.card-ico {
+    font-size: 2.5rem;
+    margin-bottom: 1rem
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+    color: #000
+}
+
+.card-desc {
+    font-size: .9rem;
+    color: #666
+}
+
+body,
+html {
+    background: #fff
+}
+
+.registro {
+    background: #FFD54F;
+    color: #795548;
+    border: 2px solid #fff0
+}
+
+.registro-docente {
+    background: #90CAF9;
+    color: #0D47A1;
+    border: 2px solid #fff0
+}
+
+.docente {
+    background: #FFCC80;
+    color: #E65100;
+    border: 2px solid #fff0
+}
+
+.pago {
+    background: #C8E6C9;
+    color: #1B5E20;
+    border: 2px solid #fff0
+}
+
+.Comunicado{
+     background: #F9C5D7;
+    color: #E91E63;
+    border: 2px solid #fff0
+}
+
+.registro:hover {
+    background: #FBC02D;
+    border: 2px solid #795548
+}
+
+.Comunicado:hover{
+     background: #F27CA4;
+    border: 2px solid #E91E63
+}
+
+
+.registro-docente:hover {
+    background: #64B5F6;
+    border: 2px solid #0D47A1
+}
+
+.docente:hover {
+    background: #FFA726;
+    border: 2px solid #E65100
+}
+
+.pago:hover {
+    background: #A5D6A7;
+    border: 2px solid #1B5E20
+}
+
