@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Profesor</title>
+     <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/profesor.css">
+   
+</head>
+
+<body>
+
+    
+<div id="sidebar-container"></div> <!-- Aquí se cargará el sidebar -->
+
+ <main>
+  <section class="inicio-profesor">
+    <h2>👨‍🏫 Bienvenido, Profesor Camila Gómez</h2>
+    <p class="subtitulo">Panel de control docente</p>
+
+    <!-- Agenda del día -->
+    <div class="agenda">
+      <h3>📅 Agenda de Hoy</h3>
+      <ul>
+        <li><span class="hora">08:00</span> Matemáticas - 1er Grado</li>
+        <li><span class="hora">09:00</span> Ciencias Naturales - 1er Grado</li>
+        <li><span class="hora">11:00</span> Reunión de docentes</li>
+      </ul>
+    </div>
+
+    <!-- Acciones rápidas -->
+    <!-- <div class="acciones-rapidas">
+      <h3>⚡ Acciones Rápidas</h3>
+      <div class="acciones-grid">
+        
+        <button>📊 Subir Calificación</button>
+        <button>📢 Nuevo Comunicado</button>
+        <button>📅 Ver Horario</button>
+      </div>
+    </div> -->
+
+    <!-- Últimos comunicados -->
+    <div class="comunicados-inicio">
+      <h3>📢 Últimos Comunicados</h3>
+      
+      <div class="card-comunicado">
+        <h4>Capacitación docente</h4>
+        <p>Jueves 3 de Octubre, tema: Estrategias de enseñanza innovadoras.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- Script que carga el sidebar y activa los eventos -->
+  <script>
+    fetch("sidebar-profesor.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("sidebar-container").innerHTML = data;
+        initSidebar();
+      });
+
+    function initSidebar() {
+      const barraLateral = document.querySelector(".barra-lateral");
+      const logo = barraLateral.querySelector("#logo");
+      const spans = barraLateral.querySelectorAll("span");
+      const palanca = barraLateral.querySelector(".switch");
+      const circulo = barraLateral.querySelector(".circulo");
+      const menu = document.querySelector(".menu");
+      const main = document.querySelector("main");
+
+      menu.addEventListener("click", () => {
+        barraLateral.classList.toggle("max-barra-lateral");
+        const isMax = barraLateral.classList.contains("max-barra-lateral");
+        menu.children[0].style.display = isMax ? "none" : "block";
+        menu.children[1].style.display = isMax ? "block" : "none";
+
+        if (window.innerWidth <= 320) {
+          barraLateral.classList.add("mini-barra-lateral");
+          main.classList.add("min-main");
+          spans.forEach((span) => span.classList.add("oculto"));
+        }
+      });
+
+      palanca.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        circulo.classList.toggle("prendido");
+      });
+
+      logo.addEventListener("click", () => {
+        barraLateral.classList.toggle("mini-barra-lateral");
+        main.classList.toggle("min-main");
+        spans.forEach((span) => span.classList.toggle("oculto"));
+      });
+    }
+  </script>
+   
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
+
+
+</body>
+
+</html>
