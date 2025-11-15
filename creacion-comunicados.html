@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Comunicado</title>
+     <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/creacion-comunicados.css">
+</head>
+<body>
+
+       <div id="sidebar-container"></div> <!-- Aquí se cargará el sidebar -->
+
+       <main>
+  <section class="comunicados">
+    <h2>📢 Crear Comunicado</h2>
+    <p class="intro">Redacta y envía un comunicado para tus estudiantes y padres de familia.</p>
+
+    <form id="formComunicado" class="form-comunicado">
+      <label for="titulo">Título del Comunicado:</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Escribe un título..." required>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe el mensaje del comunicado..." required></textarea>
+
+      <button type="submit" class="btn-publicar">Publicar Comunicado</button>
+    </form>
+
+    <p id="mensajeConfirmacion" class="mensaje-confirmacion"></p>
+  </section>
+
+  <script>
+    const form = document.getElementById("formComunicado");
+    const mensajeConfirmacion = document.getElementById("mensajeConfirmacion");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Limpia los campos
+      form.reset();
+
+      // Mensaje de confirmación
+      mensajeConfirmacion.textContent = "✅ Comunicado publicado correctamente.";
+      
+      // Borra el mensaje después de 3s
+      setTimeout(() => {
+        mensajeConfirmacion.textContent = "";
+      }, 3000);
+    });
+  </script>
+</main>
+
+
+
+      <!-- Script que carga el sidebar y activa los eventos -->
+  <script>
+    fetch("sidebar-profesor.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("sidebar-container").innerHTML = data;
+        initSidebar();
+      });
+
+    function initSidebar() {
+      const barraLateral = document.querySelector(".barra-lateral");
+      const logo = barraLateral.querySelector("#logo");
+      const spans = barraLateral.querySelectorAll("span");
+      const palanca = barraLateral.querySelector(".switch");
+      const circulo = barraLateral.querySelector(".circulo");
+      const menu = document.querySelector(".menu");
+      const main = document.querySelector("main");
+
+      menu.addEventListener("click", () => {
+        barraLateral.classList.toggle("max-barra-lateral");
+        const isMax = barraLateral.classList.contains("max-barra-lateral");
+        menu.children[0].style.display = isMax ? "none" : "block";
+        menu.children[1].style.display = isMax ? "block" : "none";
+
+        if (window.innerWidth <= 320) {
+          barraLateral.classList.add("mini-barra-lateral");
+          main.classList.add("min-main");
+          spans.forEach((span) => span.classList.add("oculto"));
+        }
+      });
+
+      palanca.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        circulo.classList.toggle("prendido");
+      });
+
+      logo.addEventListener("click", () => {
+        barraLateral.classList.toggle("mini-barra-lateral");
+        main.classList.toggle("min-main");
+        spans.forEach((span) => span.classList.toggle("oculto"));
+      });
+    }
+  </script>
+   
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+
+
+    
+</body>
+</html>

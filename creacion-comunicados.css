@@ -1,0 +1,92 @@
+*{
+   font-family: "Poppins", sans-serif !important;
+   
+}
+
+body, html{
+  background-color: #F5F6F7;
+}
+
+.comunicados {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+
+  
+}
+
+.comunicados h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.comunicados .intro {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-comunicado {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-comunicado label {
+  font-weight: 600;
+  color: #000000;
+}
+
+.form-comunicado input,
+.form-comunicado textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: none;
+}
+
+.btn-publicar {
+  background: #41338E;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  width: 60%;
+  margin: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-publicar:hover {
+  background: #E74543;
+}
+
+.mensaje-confirmacion {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 600px) {
+  .form-comunicado {
+    padding: 15px;
+  }
+
+  .btn-publicar {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
