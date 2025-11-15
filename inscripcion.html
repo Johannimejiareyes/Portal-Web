@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario de Admisión - Preescolar Mis Pequeñines</title>
+  <link rel="stylesheet" href="CSS/inscripcion.css">
+</head>
+    <div id="navbar"></div>
+<body>
+
+   <div class="nav">
+     <div id="navbar"></div>
+
+   </div>
+  <div class="container">
+    <h1>Solicitud de Admisión en Linea</h1>
+    
+    <form>
+      <div class="form-grid">
+
+        <!-- Columna izquierda -->
+        <div class="form-group">
+          <label>Apellidos y Nombres <span>* </span></label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Teléfono de contacto</label>
+          <input type="tel">
+        </div>
+
+        <div class="form-group">
+          <label>Correo del solicitante <span>* </span></label>
+          <input type="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Curso que solicita <span>* </span></label>
+          <select required>
+            <option value="">Seleccione</option>
+            <option>Parvulo</option>
+            <option>Pre Kinder</option>
+            <option>Kinder</option>
+            <option>Pre Primario</option>
+            <option>Primero</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Fecha de nacimiento <span>* </span></label>
+          <input type="date" required>
+        </div>
+
+        <div class="form-group">
+          <label>Lugar de Nacimiento <span>* </span></label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Edad <span>* </span></label>
+          <input type="number" min="1" required>
+        </div>
+
+        <div class="form-group">
+          <label>Sexo <span>* </span> </label>
+          <select required>
+            <option value="">Seleccione</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
+        </div>
+
+    
+        <div class="form-group full">
+          <label>Dirección <span>* </span></label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group full">
+          <label>Vive con <span>* </span></label>
+          <div class="options">
+            <label><input type="radio" name="vivecon" required> Ambos Padres</label>
+            <label><input type="radio" name="vivecon"> Madre</label>
+            <label><input type="radio" name="vivecon"> Padre</label>
+            <label><input type="radio" name="vivecon"> Tutor</label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>¿Hermano(s) solicitante(s)? <span>* </span></label>
+          <div class="options">
+            <label><input type="radio" name="hermano_solicita" required> Sí</label>
+            <label><input type="radio" name="hermano_solicita"> No</label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>¿Tiene hermano(s) en el colegio? <span>* </span></label>
+          <div class="options">
+            <label><input type="radio" name="hermano_colegio" required> Sí</label>
+            <label><input type="radio" name="hermano_colegio"> No</label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Colegio de Procedencia</label>
+          <input type="text">
+        </div>
+
+        <div class="form-group full file">
+          <label>Documentos (puede subir múltiples archivos)</label>
+          <input type="file" multiple>
+        </div>
+
+        <div class="form-group full">
+          <label>Razón por la cual desea ingresar al Colegio Preescolar Mis Pequeñines *</label>
+          <textarea required></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">Enviar Solicitud</button>
+        <button type="reset" class="reset">Limpiar</button>
+      </div>
+    </form>
+  </div>
+
+     <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+.estado-cuenta {
+  /* margin-left: 40px;  */
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
+  background: white;
+  min-height: 100vh;
+  width: 70%;
+  margin: auto;
+}
+
+@media(max-width:992px){
+  .estado-cuenta{
+    width: 90%;
+  }
+      
+}
+
+
+
+.estado-cuenta h2 {
+  font-size: 29px;
+  margin-bottom: 8px;
+  color: #131313;
+  text-align: center;
+}
+
+.descripcion {
+  margin-bottom: 22px;
+  color: #525252;
+  font-size: 14px;
+  text-align: center;
+}
+
+.pagos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pago-card {
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  height: 80px;
+}
+
+@media(max-width:992px){
+ .pago-card{
+  height: 120px;
+ }
+      
+}
+
+
+@media(max-width:576px){
+ .pago-card{
+  height: 160px;
+ }
+
+  .estado-cuenta{
+    width: 95%;
+  }
+     
+      
+}
+
+
+/* 🎨 Colores distintos por mes */
+.octubre { background: #4dd0e1; }
+.noviembre { background: #4dd0e1; }
+.diciembre { background: #4dd0e1; }
+.enero { background: #81c784; }
+.febrero { background: #81c784; }
+.marzo { background: #81c784; }
+.abril { background: #F6BDDA; }
+.mayo { background: #F6BDDA; }
+.junio { background: #F6BDDA; }
+
+
+
+.pago-info {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.pago-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: black;
+}
+
+.pago-info p {
+  font-size: 16px;
+  opacity: 0.9;
+  color: black;
+}
+
+.pago-monto {
+  font-size: 19px;
+  font-weight: bold;
+  color: black;
+}
+
+.acciones-pago {
+  margin-top: 20px;
+
+}
+
+.btn-pagar {
+  background: #000000;
+  color: white;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-pagar:hover {
+  background: #555;
+}
+
+.total-cuenta {
+  margin-top: 20px;
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 300px;
+}
+
+.total-cuenta h3 {
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.monto-total {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+}
