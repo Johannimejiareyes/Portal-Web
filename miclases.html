@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Clases</title>
+     <link rel="shortcut icon" href="Recursos/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/miclase.css">
+</head>
+<body>
+    <div id="sidebar-container"></div> <!-- Aquí se cargará el sidebar -->
+
+
+<main>
+ <section class="contenedor-clases">
+     <h2>📘 Mis Clases</h2>
+
+  <div class="grid-clases">
+    <!-- Curso 1: Kinder -->
+    <div class="card-clase">
+      <div>
+        <h3>Kinder</h3>
+        <p><strong>Profesor:</strong> Camila Gómez</p>
+        <p><strong>Horario:</strong> 08:00 - 10:00 AM</p>
+      </div>
+      <div class="acciones">
+        <a href="asistencia.html" class="btn btn-asistencia">👥 Tomar Asistencia</a>
+        <a href="Crear-asignacion.html" class="btn btn-asignacion">📝 Crear Asignación</a>
+        <a href="crear-calificaciones.html" class="btn btn-calificacion">📊 Evaluaciones</a>
+      </div>
+    </div>
+
+    <!-- Curso 2: Primero -->
+    <div class="card-clase">
+      <div>
+        <h3>1er Grado</h3>
+        <p><strong>Profesor:</strong> Camila Gómez</p>
+        <p><strong>Horario:</strong> 10:15 - 12:00 PM</p>
+      </div>
+      <div class="acciones">
+        <a href="asistencia-primero.html" class="btn btn-asistencia">👥 Tomar Asistencia</a>
+        <a href="Crear-asignacion.html" class="btn btn-asignacion">📝 Crear Asignación</a>
+        <a href="crear-calificaciones.html" class="btn btn-calificacion">📊 Evaluaciones</a>
+      </div>
+    </div>
+  </div>
+ </section>
+</main>
+
+
+
+      <!-- Script que carga el sidebar y activa los eventos -->
+  <script>
+    fetch("sidebar-profesor.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("sidebar-container").innerHTML = data;
+        initSidebar();
+      });
+
+    function initSidebar() {
+      const barraLateral = document.querySelector(".barra-lateral");
+      const logo = barraLateral.querySelector("#logo");
+      const spans = barraLateral.querySelectorAll("span");
+      const palanca = barraLateral.querySelector(".switch");
+      const circulo = barraLateral.querySelector(".circulo");
+      const menu = document.querySelector(".menu");
+      const main = document.querySelector("main");
+
+      menu.addEventListener("click", () => {
+        barraLateral.classList.toggle("max-barra-lateral");
+        const isMax = barraLateral.classList.contains("max-barra-lateral");
+        menu.children[0].style.display = isMax ? "none" : "block";
+        menu.children[1].style.display = isMax ? "block" : "none";
+
+        if (window.innerWidth <= 320) {
+          barraLateral.classList.add("mini-barra-lateral");
+          main.classList.add("min-main");
+          spans.forEach((span) => span.classList.add("oculto"));
+        }
+      });
+
+      palanca.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        circulo.classList.toggle("prendido");
+      });
+
+      logo.addEventListener("click", () => {
+        barraLateral.classList.toggle("mini-barra-lateral");
+        main.classList.toggle("min-main");
+        spans.forEach((span) => span.classList.toggle("oculto"));
+      });
+    }
+  </script>
+   
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
